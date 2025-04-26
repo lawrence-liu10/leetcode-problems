@@ -15,7 +15,13 @@ def create_solution(difficulty, number, title):
         with open(filepath, 'w') as f:
             f.write(f"# {number_str}. {title.title()}\n")
             f.write(f"# Difficulty: {difficulty.capitalize()}\n\n")
-            f.write(f"# Link: ")
+            f.write(f"# Link: \n\n")
+            f.write("def solution():\n")
+            f.write("    pass\n\n")
+            f.write("def main():\n")
+            f.write("    pass\n\n")
+            f.write('if __name__ == "__main__":\n')
+            f.write("    main()\n")
         print(f"Created file: {filepath}")
 
 if __name__ == "__main__":
