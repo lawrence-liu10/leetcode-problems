@@ -15,6 +15,19 @@ def solution1(nums: list[int]) -> bool:
     
     return False
 
+# add to a hashset, iterate and check if key exists
+# Time: O(n)
+# Space: O(n)
+def solution2(nums: list[int]) -> bool:
+
+    exists = set()
+    for num in nums:
+        if num in exists:
+            return True
+        exists.add(num)
+
+    return False
+
 
 def main():
     
@@ -22,7 +35,8 @@ def main():
     nums2 = [1,2,3,4]
     nums3 = [1,1,1,3,3,4,3,2,4,2]
 
-    print(solution1(nums3))
+    #print(solution1(nums3))
+    print(solution2(nums3))
 
 if __name__ == "__main__":
     main()
