@@ -31,6 +31,17 @@ def solution(strs: list[str]) -> list[list[str]]:
     # return anagrams.values() <- returns the object, we just want the listed lists
     return list(anagrams.values())
 
+
+# We shouldn't have to sort each time, that's nlog(n)
+# We can simply add each letter to a list and compare lists instead
+# works because there's only 26 letters, each insertion is O(1) so each word is O(m) instead
+# time complexity would be O(n * m) instead
+def solution(strs: list[str]) -> list[list[str]]:
+    # TODO
+    pass
+
+
+
 def main():
 
     strs1 = ["eat","tea","tan","ate","nat","bat"]
