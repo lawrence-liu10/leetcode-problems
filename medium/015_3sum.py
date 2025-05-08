@@ -20,6 +20,8 @@
 # we need to implement this somehow
 # the base can always be moved until it's unique
 
+# time complexity: O(n^2), outer base loop and inner two pointer loop
+# space complexity: O(n) to sort nums
 def solution(nums: list[int]) -> list[list[int]]:
 
     nums = sorted(nums)
@@ -34,13 +36,16 @@ def solution(nums: list[int]) -> list[list[int]]:
         l = b + 1
         r = len(nums) - 1
         while l < r:
-            if nums[r] + nums[l] + nums[b] == 0:
+            sum = nums[r] + nums[l] + nums[b]
+
+            if sum == 0:
                 ans = [nums[b], nums[l], nums[r]]
                 triplets.append(ans)
                 l += 1
                 while l < r and nums[l] == nums[l - 1]: # unique
                     l += 1
-            elif nums[r] + nums[l] + nums[b] > 0:
+                    
+            elif sum > 0:
                 r -= 1
             else:
                 l += 1
