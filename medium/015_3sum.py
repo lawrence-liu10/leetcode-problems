@@ -22,6 +22,7 @@
 
 # time complexity: O(n^2), outer base loop and inner two pointer loop
 # space complexity: O(n) to sort nums
+# time to solve: 45 min
 def solution(nums: list[int]) -> list[list[int]]:
 
     nums = sorted(nums)
@@ -44,7 +45,7 @@ def solution(nums: list[int]) -> list[list[int]]:
                 l += 1
                 while l < r and nums[l] == nums[l - 1]: # unique
                     l += 1
-                    
+
             elif sum > 0:
                 r -= 1
             else:
