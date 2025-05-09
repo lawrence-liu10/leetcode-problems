@@ -22,9 +22,9 @@
 # time to solve: 30 minutes
 
 def solution(nums: list[int]) -> int:
-    values = set()
-    for num in nums:
-        values.add(num)
+    values = set(nums) # just learned about this function
+    #for num in nums:
+    #    values.add(num)
 
     longest = 0
     while values:
