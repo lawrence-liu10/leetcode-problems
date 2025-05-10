@@ -17,6 +17,9 @@
 # push, pop, top simple
 # min, we return pop of min stack
 
+# time to solve: 45 min
+# all functions O(1)
+# space complexity: O(n)
 class MinStack:
 
     def __init__(self):
