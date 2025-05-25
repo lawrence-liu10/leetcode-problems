@@ -10,6 +10,9 @@
 # we also need to reset the array after each instance, but we can just copy again from a base template
 # looked at the hints for a more elegant solution, we can just slide a window and update occurrences of current window
 # vs what we're looking for, don't need letters set, count, etc., much simpler to implement
+# time complexity: O(n)
+# space complexity: O(n)
+# 40 minutes to solve
 
 def solution(s1: str, s2: str) -> bool:
 
