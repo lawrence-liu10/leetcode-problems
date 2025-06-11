@@ -38,6 +38,47 @@ def solution(self, root: TreeNode) -> int:
     return self.diameter
 
 
+# iterative dfs approach
+# the diameter will pass through a node which has the max sum of left and right subtree depths
+# for an iterative solution, we'll first calculate the depths of each node before pushing back to the stack
+#   because we start from the leaves, we'll use those to calculate the depths going upwards
+#   if the sum of l and r depths are greater than the current max, update
+
+# less efficient in time compared to recursive, given two accesses per node
+# much more space efficient, no call stack memory required
+# this question seems pretty difficult for an easy
+def iterative_dfs(self, root: TreeNode) -> int:
+    max_diameter = 0
+    stack = []
+    depth = {None: 0}
+
+    stack.append((root, False))
+    while stack:
+        node, seen = stack.pop()
+        if not node:
+            continue
+
+
+        if not seen:
+            # put back onto stack to be processed later
+            stack.append((node, True))
+
+            stack.append((node.right, False))
+            stack.append((node.left, False))
+        else:
+            l_depth = depth[node.left]
+            r_depth = depth[node.right]
+
+            # update current node's depth
+            depth[node] = 1 + max(l_depth, r_depth)
+
+            # max diameter is based on edges, not nodes, so we don't add one
+            max_diameter = max(max_diameter, l_depth + r_depth)
+
+    return max_diameter
+
+
+
 def main():
     pass
 
