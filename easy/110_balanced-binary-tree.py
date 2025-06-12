@@ -3,6 +3,7 @@
 
 # Link: https://leetcode.com/problems/balanced-binary-tree/description/
 
+from collections import deque
 from typing import Optional
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -38,6 +39,44 @@ def solution(self, root: Optional[TreeNode]) -> bool:
 
     height, balanced = check(root)
     return balanced
+
+# iterative dfs approach
+# we avoid the recursion stack overhead, and avoid stack overflow, so it's more efficient in general but harder to implement
+
+# we process nodes in post order, and keep track of heights using a hash map
+# we'll push nodes to the stack until we reach the leftmost leaf, then check the right child
+#   after processing the subtrees, we calculate the current height and check if they're balanced
+#   if there's ever an unbalanced subtree, the whole tree is unbalanced
+def iterative_dfs(self, root: Optional[TreeNode]) -> bool:
+    stack = []
+    node = root
+    last_visited = None
+    heights = {} # node:height
+
+    while stack or node:
+        if node:
+            stack.append(node)
+            node = node.left
+        else:
+            peek = stack[-1]
+            # if there's a right child and it isn't processed
+            if peek.right and peek.right != last_visited:
+                node = peek.right
+            else:
+                left_height = heights.get(peek.left, 0)
+                right_height = heights.get(peek.right, 0)
+
+                if abs(left_height - right_height) > 1:
+                    return False
+
+                heights[peek] = 1 + max(left_height, right_height)
+                last_visited = stack.pop()
+
+    return True
+
+
+
+# bfs approach isn't efficient because we work from the leaves up, so I'll skip it
 
 def main():
 
