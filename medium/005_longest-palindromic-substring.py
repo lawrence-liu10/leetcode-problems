@@ -29,6 +29,35 @@ def solution(self, s: str) -> str:
 
     return s[start:end + 1]
 
+# revisiting to understand the dp approach
+# in the dp approach, we'll use a 2d array to mark strings from i-j
+# in this approach, single characters are all palindromes,
+#   and we'll check doubles and above manually
+#   there's probably a more efficient approach
+# we'll also make sure to solve backwards to solve subproblems first
+def solution(self, s: str) -> str:
+    n = len(s)
+    dp = [[False] * n for _ in range(n)]
+    sol = s[0]
+
+    for i in range(n):
+        dp[i][i] = True
+        sol = s[i]
+    
+    for i in range(n - 1):
+        if s[i] == s[i + 1]:
+            dp[i][i+1] = True
+            sol = s[i:i+2]
+    
+    for i in range(n - 1, -1, -1):
+        for j in range(i + 2, n):
+            if s[i] == s[j] and dp[i + 1][j - 1]:
+                dp[i][j] = True
+                if j - i + 1 > len(sol):
+                    sol = s[i:j + 1]
+    return sol
+
+
 
 def main():
     pass
