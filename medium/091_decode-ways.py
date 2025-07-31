@@ -49,6 +49,26 @@ def main(self, s: str) -> int:
     return dfs(0)
 
 
+# we'll replace the memo with a dp array, going from beginning to end
+#   otherwise it's the same, starting 0 is invalid, and check if double numbers are valid
+def bottom_up(self, s: str) -> int:
+
+    dp = [0] * (len(s) + 1)
+    dp[len(s)] = 1
+
+    for i in range(len(s) - 1, -1, -1):
+        if s[i] == '0':
+            dp[i] = 0
+        else:
+            dp[i] = dp[i + 1]
+            if i + 1 < len(s) and int(s[i: i + 2]) <= 26:
+                dp[i] += dp[i + 2]
+
+    return dp[0]
+
+
+
+
 
 if __name__ == "__main__":
     main()
