@@ -24,6 +24,23 @@ def solution(self, s: str, wordDict: list[str]) -> bool:
     
     return dp(s)
 
+# bottom up approach
+# in this case, an empty string is always in the word list
+#   otherwise, we'll loop through our string and if a word exists in word dict, and 
+#   appears after another previously valid word, it's valid
+# if at the end the dp array is true, then it's only made up of words from wordDict
+def solution(self, s: str, wordDict: list[str]) -> bool:
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in wordDict:
+                dp[i] = True
+                break
+    
+    return dp[len(s)]
+
 def main():
     pass
 
