@@ -27,7 +27,25 @@ def solution(self, coins: list[int], amount: int) -> int:
         return memo[remaining]
     
     return dp(amount)
-        
+
+# for the bottom up approach, we can use a dp array up to amount (+ 1 b/c 0 index)
+#   for the base case, it takes 0 coins to make change of 0
+#   otherwise, for every amount we'll try every possible coin, and if a coin can fit in the amount,
+#       we check if there's a better solution
+def bottom_up(self, coins: list[int], amount: int) -> int:
+
+    dp = [float('inf')] * (amount + 1)
+    dp[0] = 0
+
+    for i in range(1, amount + 1):
+        for coin in coins:
+            if coin <= i:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+    
+    if dp[amount] == float('inf'):
+        return -1
+    return dp[amount]
+
 
 def main():
     pass
