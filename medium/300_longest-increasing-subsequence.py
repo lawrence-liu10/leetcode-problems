@@ -25,16 +25,20 @@ def solution(self, nums: list[int]) -> int:
     
     return dp(-1, 0)
 
-# we can convert to a bottom up by using a dp table
-#   we'll explicitly check up to i from the beginning and update the table when necessary
+
+# checking if I could come up with the bottom up solution again
+#   for each num, we take the max length before it plus one or the current max
 def bottom_up(self, nums: list[int]) -> int:
 
     dp = [1] * len(nums)
     for i in range(1, len(nums)):
         for j in range(i):
-            if nums[j] < nums[i]:
-                dp[i] = max(dp[i], dp[j] + 1)
+            if nums[i] > nums[j]:
+                nums[i] = max(dp[i], nums[j] + 1)
+    
+
     return max(dp)
+
 
 def main():
     pass
