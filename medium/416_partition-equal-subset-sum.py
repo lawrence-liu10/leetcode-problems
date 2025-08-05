@@ -27,12 +27,27 @@ def solution(self, nums: list[int]) -> bool:
         return memo[(i, remaining)]
     
     return dp(0, target)
-        
-        
-        
-        
-        
-    return dp(0, 0)
+
+
+# for the bottom up,
+#   we'll set up a dp array representing the possible sums from 0 to our target
+#   we'll work backwards from the target to our current num, and 
+#       check if previous sums can be calculated
+#   at the end, if the target is true then it can be partitioned
+def bottom_up(self, nums: list[int]) -> bool:
+    total = sum(nums)
+    if total % 2 != 0:
+        return False
+    
+    target = total // 2
+    dp = [False] * (target + 1)
+    dp[0]= True
+
+    for num in nums:
+        for sum in range(target, num - 1, -1):
+            dp[sum] = dp[sum] or dp[sum - num]
+    
+    return dp[target]
 
 def main():
     pass
