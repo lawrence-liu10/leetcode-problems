@@ -1,9 +1,9 @@
 # 053. Maximum Subarray
 # Difficulty: Medium
 
-# Link: 
+# Link: https://leetcode.com/problems/maximum-subarray/
 
-def solution():
+def solution(self, nums: list[int]) -> int:
     pass
 
 def main():
