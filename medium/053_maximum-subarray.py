@@ -16,6 +16,18 @@ def solution(self, nums: list[int]) -> int:
     
     return max_sum
 
+# dp version
+#   for practice let's make an explicit dp array
+#       the array represents the max subarray that ends at i
+#       it's either the current num, or the current num plus the running sum
+#   at the end, we return the largest one
+def dp(self, nums: list[int]) -> int:
+    dp = [0] * len(nums)
+    dp[0] = nums[0]
+    for i in range(1, len(nums)):
+        dp[i] = max(nums[i], dp[i - 1] + nums[i])
+    return max(dp)
+
 def main():
     pass
 
