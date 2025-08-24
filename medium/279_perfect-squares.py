@@ -3,6 +3,8 @@
 
 # Link: https://leetcode.com/problems/perfect-squares/
 
+import math
+
 # came to korea for a study abroad, skipped a couple days
 # for the brute force, I'm thinking keep the squares up to sqrt(n)
 #   then do a coin change style approach to get the minimum
